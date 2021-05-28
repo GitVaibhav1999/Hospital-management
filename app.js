@@ -6,12 +6,18 @@ const cors = require('cors')
 require("dotenv/config");
 
 const doctorsRoute = require("./Routes/doctors");
+const patientsRoute = require("./Routes/patients")
 
 app.use(bodyParser.json());
 app.use(cors());
-app.use("/doctors", doctorsRoute);
+
 
 // ROUTES
+app.use("/doctors", doctorsRoute);
+app.use("/patients", patientsRoute);
+// 
+
+
 app.get("/", (req, res) => {
   res.send("we are at home");
 });
