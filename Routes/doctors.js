@@ -12,7 +12,7 @@ router.get("/getDoctorsData", (req, res) => {
 
 // post request to add new doctor
 
-router.post("/postDoctorData", (req, res) => {
+router.post("/addDoctorData", (req, res) => {
   const doctor = new Doctors({
     firstName: req.body.firstName,
     lastName: req.body.lastName,

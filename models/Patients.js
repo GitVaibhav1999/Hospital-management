@@ -6,8 +6,7 @@ const patientsSchema = mongoose.Schema({
     age: String,
     contact: String,
     patientID: String,
-    daysAvailable: Array,
-    maxAppointmentPerDay: String,
+
 })
 
 module.exports = mongoose.model('patientsData', patientsSchema) 
