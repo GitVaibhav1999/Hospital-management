@@ -11,7 +11,7 @@ router.get("/", (req, res) => {
 router.get("/getPatientsData", (req, res) => {
   Patients.find()
     .then((data) => res.json(data))
-    .catch((err) => res.data({ message: err }));
+    .catch((err) => res.json({ message: err }));
 });
 
 // add patient patient using patientID
@@ -28,7 +28,7 @@ router.post("/addPatientData", (req, res) => {
   patient
     .save()
     .then((data) => res.json(data))
-    .catch((err) => res.data({ message: err }));
+    .catch((err) => res.json({ message: err }));
 });
 
 module.exports = router;

@@ -9,9 +9,11 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import DoctorsTab from './Tabs/DoctorsTab';
 import PatientsTab from './Tabs/PatientsTab';
+import {getDoctorsData} from './API'
 
-function TabPanel(props) {
+function TabPanel(props) {  
   const { children, value, index, ...other } = props;
+
 
   return (
     <div
