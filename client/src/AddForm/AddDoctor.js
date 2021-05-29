@@ -13,6 +13,9 @@ import {
 } from "@material-ui/core";
 import React from "react";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import {addDoctorData, getDoctorsData} from '../API';
+import { useData } from "../Context";
+
 
 const useStyles = makeStyles({
   root: {
@@ -53,11 +56,34 @@ const useStyles = makeStyles({
 function AddDoctor(props) {
   const classes = useStyles();
 
+  const { value_doctors_data } = useData();
+  const [doctorsData, setDoctorsData] = value_doctors_data;
+
   const totalDays = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
+
+  const [firstName, setFirstName] = React.useState("");
+  const [lastName, setLastName] = React.useState("");
+  const [contact, setContact] = React.useState("");
+  const [id, setId] = React.useState("");
 
   const [speciality, setSpeciality] = React.useState("");
   const [day, setDay] = React.useState([]);
   const [maxAppointment, setMaxAppointment] = React.useState([]);
+
+  const handleFirstName = (eve) => {
+    setFirstName(eve.target.value);
+  };
+
+  const handleLastName = (eve) => {
+    setLastName(eve.target.value);
+  };
+  const handleContact = (eve) => {
+    setContact(eve.target.value);
+  };
+
+  const handleId = (eve) => {
+    setId(eve.target.value);
+  };
 
   const handleSpeciality = (eve) => {
     setSpeciality(eve.target.value);
@@ -70,8 +96,26 @@ function AddDoctor(props) {
   };
 
   const temp = () => {
-      props.setFalse()
-  }
+    props.setFalse();
+  };
+
+  const submitForm = () => {
+      const doctorData = {
+          'firstName': firstName,
+          'lastName': lastName,
+          'contact': contact,
+          'doctorID': id,
+          'speciality': speciality,
+          'daysAvailable': day,
+          'maxAppointmentPerDay':maxAppointment,
+      }
+      addDoctorData(doctorData).then(res=>{
+          var tempData = [...doctorsData]
+          tempData.push(doctorData)
+          setDoctorsData(tempData)
+          temp()
+      })
+  };
 
   return (
     <div className={classes.root}>
@@ -88,24 +132,32 @@ function AddDoctor(props) {
           <div className={classes.formLeft}>
             <TextField
               className={classes.Text}
+              value={firstName}
+              onChange={handleFirstName}
               id="outlined-basic"
               label="First Name"
               variant="outlined"
             />
             <TextField
               className={classes.Text}
+              value={lastName}
+              onChange={handleLastName}
               id="outlined-basic"
               label="Last Name"
               variant="outlined"
             />
             <TextField
               className={classes.Text}
+              value={contact}
+              onChange={handleContact}
               id="outlined-basic"
               label="Contact Number"
               variant="outlined"
             />
             <TextField
               className={classes.Text}
+              value={id}
+              onChange={handleId}
               id="outlined-basic"
               label="ID"
               variant="outlined"
@@ -192,11 +244,12 @@ function AddDoctor(props) {
         </div>
         <div>
           <Button
+            onClick={submitForm}
             style={{
               border: "1px solid #023047",
               padding: "1rem 2rem",
               color: "#023047",
-              boxShadow:'3px 3px 1px 0.2px grey'
+              boxShadow: "3px 3px 1px 0.2px grey",
             }}
           >
             {" "}

@@ -2,6 +2,8 @@ import { IconButton, makeStyles, Typography } from "@material-ui/core";
 import React from "react";
 import { Paper } from "@material-ui/core";
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
+import { deleteDoctorData } from "../API";
+import { useData } from "../Context";
 
 const useStyles = makeStyles(() => ({
   paper: {
@@ -37,6 +39,15 @@ const useStyles = makeStyles(() => ({
 
 function DoctorCard({ thisDoctor }) {
   const classes = useStyles();
+  
+  const { value_doctors_data } = useData();
+  const [doctorsData, setDoctorsData] = value_doctors_data;
+
+  const deleteDoctor = () => {
+    const id = thisDoctor.doctorID;
+    deleteDoctorData(id).then((res) => setDoctorsData(res));
+  };
+
   return (
     <div className={classes.paper}>
       <div className={classes.detail}>
@@ -45,7 +56,7 @@ function DoctorCard({ thisDoctor }) {
             <Typography variant="h4">{thisDoctor.firstName}</Typography>
           </span>
           <span className={classes.delete}>
-            <IconButton>
+            <IconButton onClick={deleteDoctor}>
               <DeleteOutlineIcon />
             </IconButton>
           </span>
@@ -53,7 +64,6 @@ function DoctorCard({ thisDoctor }) {
 
         <Typography variant="subtitle1">{thisDoctor.speciality}</Typography>
         {/* <Typography variant="subtitle1">{thisDoctor.contact}</Typography> */}
-        
       </div>
       <div>
         {["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"].map((day) => {
