@@ -1,11 +1,14 @@
-import './App.css';
+import "./App.css";
 
-import TabPanel from './TabPanel'
+import { DataProvider } from "./Context";
+import TabPanel from "./TabPanel";
 
 function App() {
   return (
     <div className="App">
-      <TabPanel />
+      <DataProvider>
+        <TabPanel />
+      </DataProvider>
     </div>
   );
 }
