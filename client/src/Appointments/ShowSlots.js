@@ -5,6 +5,7 @@ import { useData } from "../Context";
 import EachSlot from "./EachSlot";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import HourglassEmptyIcon from "@material-ui/icons/HourglassEmpty";
+import { addNewAppointment } from "../API";
 
 const useStyles = makeStyles({
   root: {
@@ -74,9 +75,14 @@ function ShowSlots() {
     setShowSlots(false);
   };
 
-  // const addToPending() => {
-
-  // }
+  const addToPending = async () => {
+    addNewAppointment(appDetail)
+      .then((res) => {
+        console.log("add appointment response", res.data);
+        setShowSlots(false)
+      })
+      .catch((err) => console.log(err));
+  };
 
   if (slots.length === 0) {
     return (

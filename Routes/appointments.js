@@ -24,7 +24,7 @@ router.post("/addNewAppointment", (req, res) => {
     day: req.body.day, // empty if slot not booked
     severity: req.body.severity, // 1 - 5
     speciality: req.body.speciality,
-    isBooked: req.body.isBooked,
+    isBooked: req.body.isBooked,  // false is not booked
   });
 
   appointment
