@@ -22,7 +22,7 @@ const useStyles = makeStyles(() => ({
     flexGrow: "1",
   },
   delete: {
-      display:'flex',
+    display: "flex",
     "$:hover": {
       color: "red",
       marginLeft: "2rem",
@@ -34,32 +34,57 @@ const useStyles = makeStyles(() => ({
     direction: "row",
     alignItems: "center",
   },
-  png:{
-      fill:'red'
-  }
+  png: {
+    fill: "red",
+  },
 }));
 
-function PatientCard() {
+function PatientCard({ thisPatient }) {
   const classes = useStyles();
+
+  const [appointment, setAppointment] = React.useState("false");
+
+  if (appointment == true) {
+    return (
+      <div className={classes.paper}>
+        <div className={classes.detail}>
+          <div className={classes.top}>
+            <span style={{ flexGrow: "1", fontSize:'1rem' }}>
+            <Typography variant="subtitle">{thisPatient.firstName}</Typography>
+            </span>
+          </div>
+        </div>
+        <span className={classes.delete}></span>
+      </div>
+    );
+  }
+
   return (
     <div className={classes.paper}>
       <div className={classes.detail}>
         <div className={classes.top}>
           <span style={{ flexGrow: "1" }}>
-            <Typography variant="h4">Vaibhav</Typography>
-            <Typography>Age: 35</Typography>
+            <Typography variant="h4">{thisPatient.firstName}</Typography>
+            <Typography>Age: {thisPatient.age}</Typography>
           </span>
         </div>
 
-        <Typography variant="subtitle1">ID: R11E5551</Typography>
+        <Typography variant="subtitle1">ID: {thisPatient.patientID}</Typography>
       </div>
       <span className={classes.delete}>
-          <div style={{flexGrow:'1'}}></div>
-        <IconButton>
+        <div style={{ flexGrow: "1", justifyContent: "center" }}></div>
+        <IconButton
+          onClick={() => setAppointment(true)}
+          style={{
+            border: "1px solid lightgrey",
+            borderRadius: "30%",
+            padding: "2% 4%",
+          }}
+        >
           <AddCircleOutlineIcon />
-        </IconButton>
-        <IconButton>
-          <DeleteOutlineIcon />
+          <Typography style={{ marginLeft: "1rem" }} variant="button">
+            Appointment
+          </Typography>
         </IconButton>
       </span>
     </div>

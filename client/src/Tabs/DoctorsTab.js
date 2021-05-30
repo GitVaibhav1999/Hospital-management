@@ -33,8 +33,8 @@ function DoctorsTab() {
 
   React.useEffect(() => {
     const getData = async () => {
-      const doctorsData = await getDoctorsData();
-      setDoctorsData(doctorsData)
+      const tempDoctorsData = await getDoctorsData();
+      setDoctorsData(tempDoctorsData)
     };
     getData();
   }, []);

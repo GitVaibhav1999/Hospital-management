@@ -125,8 +125,8 @@ function AddDoctor(props) {
         </IconButton>
       </div>
       <div className={classes.right}>
-        <div>
-          <Typography>Fill Details below to add new doctor.</Typography>
+        <div style={{color:'grey',marginTop:'2rem' , marginBottom:'4rem'}}>
+          <Typography variant='h4' >Fill all details below to add new doctor.</Typography>
         </div>
         <div className={classes.form}>
           <div className={classes.formLeft}>

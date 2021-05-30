@@ -20,3 +20,13 @@ export const deleteDoctorData = async (id) => {
   console.log(res.data);
   return data;
 };
+
+export const getPatientsData = async () => {
+    const patData = await axios.get(`${backend}/patients/getPatientsData`);
+    return patData.data;
+}
+
+export const addPatientData = async (patientData) => {
+    var res = await axios.post(`${backend}/patients/addPatientData`, patientData);
+    return res;
+}
