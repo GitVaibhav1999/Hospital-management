@@ -12,12 +12,19 @@ import SearchIcon from "@material-ui/icons/Search";
 import { useData } from "../Context";
 import { getDoctorsData, getPatientsData } from "../API";
 const useStyles = makeStyles({
+  noBorder: {
+    border: "none",
+  },
   root: {
     display: "flex",
     width: "100%",
     // border: "1px solid grey",
     height: "10vh",
     alignItems: "center",
+    border: "1px solid lightgrey",
+    boxShadow: "0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08)",
+    marginBottom: "2rem",
+    borderRadius: "40px",
   },
   icon: {
     margin: "1rem",
@@ -27,6 +34,8 @@ const useStyles = makeStyles({
   search: {
     marginRight: "1rem",
     width: "200%",
+    borderRadius: "40px",
+    border: "1px solid #d3d3d3",
   },
 });
 
@@ -73,32 +82,38 @@ function SearchPatients() {
       </div>
       <div className={classes.search}>
         <TextField
-          value={name}
           onChange={handleName}
-          style={{ width: "100%" }}
-          id="outlined-basic"
-          placeholder="Patient's Name"
+          value={name}
           variant="outlined"
+          disableUnderline={false}
+          placeholder="Patient Name"
+          InputProps={{
+            classes: { notchedOutline: classes.noBorder },
+          }}
         />
       </div>
       <div className={classes.search}>
         <TextField
-          value={id}
           onChange={handleId}
-          style={{ width: "100%" }}
-          id="outlined-basic"
-          placeholder="Patient's ID"
+          value={id}
           variant="outlined"
+          disableUnderline={false}
+          placeholder="Patient ID"
+          InputProps={{
+            classes: { notchedOutline: classes.noBorder },
+          }}
         />
       </div>
       <div className={classes.search}>
         <TextField
-          value={age}
-          onChange={handleAge}
-          style={{ width: "100%" }}
-          id="outlined-basic"
-          placeholder="Patient's Age"
           variant="outlined"
+          onChange={handleAge}
+          value={age}
+          disableUnderline={false}
+          placeholder="Patient Age"
+          InputProps={{
+            classes: { notchedOutline: classes.noBorder },
+          }}
         />
       </div>
     </div>

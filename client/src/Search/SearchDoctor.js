@@ -12,12 +12,19 @@ import SearchIcon from "@material-ui/icons/Search";
 import { useData } from "../Context";
 import { getDoctorsData } from "../API";
 const useStyles = makeStyles({
+  noBorder: {
+    border: "none",
+  },
   root: {
     display: "flex",
     width: "100%",
     // border: "1px solid grey",
     height: "10vh",
     alignItems: "center",
+    border: "1px solid lightgrey",
+    boxShadow: "0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08)",
+    marginBottom: "2rem",
+    borderRadius: "40px",
   },
   icon: {
     margin: "1rem",
@@ -27,6 +34,8 @@ const useStyles = makeStyles({
   search: {
     marginRight: "1rem",
     width: "200%",
+    borderRadius: "40px",
+    border: "1px solid #d3d3d3",
   },
 });
 
@@ -75,8 +84,12 @@ function SearchDoctor() {
         <TextField
           value={name}
           onChange={handleName}
-          style={{ width: "100%" }}
-          id="outlined-basic"
+          variant="outlined"
+          disableUnderline={false}
+          placeholder="Patient Name"
+          InputProps={{
+            classes: { notchedOutline: classes.noBorder },
+          }}
           placeholder="Name"
           variant="outlined"
         />
@@ -85,8 +98,12 @@ function SearchDoctor() {
         <TextField
           value={id}
           onChange={handleId}
-          style={{ width: "100%" }}
-          id="outlined-basic"
+          variant="outlined"
+          disableUnderline={false}
+          placeholder="Patient Name"
+          InputProps={{
+            classes: { notchedOutline: classes.noBorder },
+          }}
           placeholder="Doctor's ID"
           variant="outlined"
         />
@@ -95,18 +112,21 @@ function SearchDoctor() {
         <FormControl
           style={{ width: "100%" }}
           label="Speciality"
-          variant="outlined"
           className={classes.formControl}
         >
-          <InputLabel id="demo-simple-select-outlined-label">
+          <InputLabel
+            style={{ paddingLeft: "3rem" }}
+            id="demo-simple-select-outlined-label"
+          >
             Speciality
           </InputLabel>
           <Select
+            disableUnderline={true}
+            style={{ margin: "1rem", paddingLeft: "1rem" }}
             value={speciality}
             onChange={handleSpeciality}
             label="Speciality"
             placeholder="Speciality"
-            variant="outlined"
           >
             <MenuItem value="">
               <em>All</em>
