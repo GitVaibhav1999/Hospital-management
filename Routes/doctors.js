@@ -39,7 +39,7 @@ router.delete("/deleteDoctorById", (req, res) => {
   Doctors.deleteOne({ doctorID: doctorID })
     .then((data) => res.json(data))
     .catch((err) => {
-      console.log(err);
+      console.log('delete doctor error', err);
       res.json({ message: err });
     });
 });
