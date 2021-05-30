@@ -7,7 +7,7 @@ const appointmentSchema = mongoose.Schema({
     day: String,
     severity: String,
     speciality: String,
-    isBooked: Boolean,
+    isBooked: Boolean,  
 })
 
 module.exports = mongoose.model('AppointmentsData', appointmentSchema) 

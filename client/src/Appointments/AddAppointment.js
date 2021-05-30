@@ -30,8 +30,8 @@ const useStyles = makeStyles(() => ({
     // left: "50%",
     transform: "translate(-2%, -0%)",
     zIndex: "100",
-    backgroundColor: "#edb1a2",
-    transition: "3s ease",
+    backgroundColor: "#fcf2f0",
+    // transition: "3s ease",
     boxShadow: "3px 3px 6px 1px #8a795d",
     top: "300px",
     left: "10%",
@@ -139,11 +139,11 @@ function AddAppointment({ thisPatient, close }) {
               <MenuItem value="">
                 <em>None</em>
               </MenuItem>
-              <MenuItem value={"Pediatrics"}>1</MenuItem>
-              <MenuItem value={"Cardiology"}>2</MenuItem>
-              <MenuItem value={"Ophthalmology"}>3</MenuItem>
-              <MenuItem value={"Gynaecology"}>4</MenuItem>
-              <MenuItem value={"Physical Theraphy"}>5</MenuItem>
+              <MenuItem value={"1"}>1</MenuItem>
+              <MenuItem value={"2"}>2</MenuItem>
+              <MenuItem value={"3"}>3</MenuItem>
+              <MenuItem value={"4"}>4</MenuItem>
+              <MenuItem value={"5"}>5</MenuItem>
             </Select>
           </FormControl>
         </div>
@@ -154,6 +154,7 @@ function AddAppointment({ thisPatient, close }) {
               border: "1px solid grey",
               boxShadow: "3px 3px 1px 0.1px #8a795d",
               width: "70%",
+              backgroundColor:'lightPink'
             }}
           >
             {" "}

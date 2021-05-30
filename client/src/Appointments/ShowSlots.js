@@ -74,9 +74,9 @@ function ShowSlots() {
     setShowSlots(false);
   };
 
-  const addToPending() => {
-    
-  }
+  // const addToPending() => {
+
+  // }
 
   if (slots.length === 0) {
     return (

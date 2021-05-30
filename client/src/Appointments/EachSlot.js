@@ -36,7 +36,7 @@ const useStyles = makeStyles({
   },
 });
 
-function EachSlot() {
+function EachSlot({slotData}) {
   const classes = useStyles();
 
   return (
@@ -48,7 +48,7 @@ function EachSlot() {
             <span style={{ color: "#e07a5f", fontSize: "1rem" }}>
               Doctor Name:
             </span>{" "}
-            Vaibhav Gautam
+            {slotData.doctorName}
           </Typography>
         </div>
         <div style={{ width: "30%", textAlign: "left" }}>
@@ -56,7 +56,7 @@ function EachSlot() {
             <span style={{ color: "#e07a5f", fontSize: "1rem" }}>
               Appointment Day:
             </span>{" "}
-            MON
+            {slotData.day}
           </Typography>
         </div>
       </div>
