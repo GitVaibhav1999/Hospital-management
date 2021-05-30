@@ -71,9 +71,13 @@ function AddAppointment({ thisPatient, close }) {
 
   const showAvailableSlots = () => {
     setAppDetail({
+      appointmentID: "",
       patientID: thisPatient.patientID,
       severity: severity,
       speciality: speciality,
+      doctorID: "",
+      day: "",
+      isBooked: false
     });
     setShowSlots(true);
   };
