@@ -2,6 +2,7 @@ import { Typography, makeStyles, Button, Grid } from "@material-ui/core";
 import React from "react";
 import AddPatient from "../AddForm/AddPatient";
 import { getPatientsData } from "../API";
+import ShowSlots from "../Appointments/ShowSlots";
 import DoctorCard from "../Cards/DoctorCard";
 import PatientCard from "../Cards/PatientCard";
 import { useData } from "../Context";
@@ -25,8 +26,9 @@ const useStyles = makeStyles((theme) => ({
 function PatientsTab() {
   const classes = useStyles();
 
-  const { value_patients_data } = useData();
+  const { value_patients_data, value_show_slots } = useData();
   const [patientsData, setPatientsData] = value_patients_data;
+  const [showSlots, setShowSlots] = value_show_slots;
 
   const [add, setAdd] = React.useState(false);
 
@@ -38,6 +40,10 @@ function PatientsTab() {
     };
     getData();
   }, []);
+  
+  if(showSlots == true){
+      return<ShowSlots />
+  }
 
   if (add == true) {
     return <AddPatient setFalse={() => setAdd(false)} />;

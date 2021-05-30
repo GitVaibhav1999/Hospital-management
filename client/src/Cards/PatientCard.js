@@ -3,6 +3,7 @@ import React from "react";
 import { Paper } from "@material-ui/core";
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
+import AddAppointment from "../Appointments/AddAppointment";
 const useStyles = makeStyles(() => ({
   paper: {
     display: "flex",
@@ -16,6 +17,8 @@ const useStyles = makeStyles(() => ({
     border: "1px solid #e07a5f",
     borderRadius: "2rem",
     boxShadow: "1px 1px 2px 0.4px #e07a5f",
+    position:'relative',
+    zIndex:'0'
   },
   detail: {
     color: "#e07a5f",
@@ -42,20 +45,11 @@ const useStyles = makeStyles(() => ({
 function PatientCard({ thisPatient }) {
   const classes = useStyles();
 
-  const [appointment, setAppointment] = React.useState("false");
+  const [appointment, setAppointment] = React.useState(false);
 
   if (appointment == true) {
     return (
-      <div className={classes.paper}>
-        <div className={classes.detail}>
-          <div className={classes.top}>
-            <span style={{ flexGrow: "1", fontSize:'1rem' }}>
-            <Typography variant="subtitle">{thisPatient.firstName}</Typography>
-            </span>
-          </div>
-        </div>
-        <span className={classes.delete}></span>
-      </div>
+      <AddAppointment thisPatient={thisPatient} close={()=>setAppointment(false)} />
     );
   }
 
@@ -77,7 +71,7 @@ function PatientCard({ thisPatient }) {
           onClick={() => setAppointment(true)}
           style={{
             border: "1px solid lightgrey",
-            borderRadius: "30%",
+            borderRadius: "20px",
             padding: "2% 4%",
           }}
         >
