@@ -43,10 +43,8 @@ function a11yProps(index) {
 const useStyles = makeStyles((theme) => ({
   root: {
     display:'block',
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: 'whiteSmoke',
     height:"100%",
-    width: '80vw',
-    borderRight:'1px solid  #213267',
   },
 }));
 
