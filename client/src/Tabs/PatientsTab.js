@@ -6,6 +6,7 @@ import ShowSlots from "../Appointments/ShowSlots";
 import DoctorCard from "../Cards/DoctorCard";
 import PatientCard from "../Cards/PatientCard";
 import { useData } from "../Context";
+import SearchPatients from "../Search/SearchPatient";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -40,9 +41,9 @@ function PatientsTab() {
     };
     getData();
   }, []);
-  
-  if(showSlots == true){
-      return<ShowSlots />
+
+  if (showSlots == true) {
+    return <ShowSlots />;
   }
 
   if (add == true) {
@@ -51,7 +52,7 @@ function PatientsTab() {
 
   return (
     <div className={classes.root}>
-      <div className={classes.search}> Search patients</div>
+      <div className={classes.search}><SearchPatients /></div>
       <Grid className={classes.list} container>
         {patientsData.map((thisPatient) => (
           <Grid item>
@@ -70,9 +71,6 @@ function PatientsTab() {
         {" "}
         Add patient{" "}
       </Button>
-
-      {/* add doctor button */}
-      {/* add doctor form */}
     </div>
   );
 }

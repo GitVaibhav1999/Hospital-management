@@ -5,6 +5,7 @@ import AddDoctor from "../AddForm/AddDoctor";
 import { getDoctorsData } from "../API";
 import DoctorCard from "../Cards/DoctorCard";
 import { useData } from "../Context";
+import SearchDoctor from "../Search/SearchDoctor";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,12 +30,12 @@ function DoctorsTab() {
   const { value_doctors_data } = useData();
   const [doctorsData, setDoctorsData] = value_doctors_data;
 
-  React.useEffect(()=>console.log(doctorsData),[doctorsData])
+  React.useEffect(() => console.log(doctorsData), [doctorsData]);
 
   React.useEffect(() => {
     const getData = async () => {
       const tempDoctorsData = await getDoctorsData();
-      setDoctorsData(tempDoctorsData)
+      setDoctorsData(tempDoctorsData);
     };
     getData();
   }, []);
@@ -50,7 +51,7 @@ function DoctorsTab() {
 
   return (
     <div className={classes.root}>
-      <div className={classes.search}> Search doctors</div>
+      <div className={classes.search}> <SearchDoctor /></div>
       <Grid className={classes.list} container>
         {doctorsData.map((each_doctor) => (
           <Grid item>
