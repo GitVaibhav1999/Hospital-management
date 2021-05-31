@@ -50,6 +50,18 @@ const useStyles = makeStyles({
     margin: "2rem",
     height: "8vh",
   },
+  submit: {
+    margin: "2rem",
+    border: "1px solid #e07a5f",
+    padding: "1rem 2rem",
+    color: "#e07a5f",
+    boxShadow: "3px 3px 1px 0.2px grey",
+    "&:hover": {
+      backgroundColor: "#e07a5f",
+      color: "whiteSmoke",
+      boxShadow: "0px 0px 0px",
+    },
+  },
 });
 
 function AddPatient(props) {
@@ -113,7 +125,7 @@ function AddPatient(props) {
       <div className={classes.right}>
         <div style={{ color: "grey", marginTop: "2rem", marginBottom: "4rem" }}>
           <Typography variant="h4">
-            Fill all details below to add new patient.
+            Fill all the details below to add new patient.
           </Typography>
         </div>
         <div className={classes.form}>
@@ -161,15 +173,7 @@ function AddPatient(props) {
           </div>
         </div>
         <div>
-          <Button
-            onClick={submitForm}
-            style={{
-              border: "1px solid #023047",
-              padding: "1rem 2rem",
-              color: "#023047",
-              boxShadow: "3px 3px 1px 0.2px grey",
-            }}
-          >
+          <Button className={classes.submit} onClick={submitForm}>
             {" "}
             <Typography variant="button">Submit Patient Form</Typography>
           </Button>

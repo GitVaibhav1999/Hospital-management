@@ -19,7 +19,6 @@ export const deleteDoctorData = async (id) => {
     data: { doctorID: id },
   });
   var data = await getDoctorsData();
-  console.log(res.data);
   return data;
 };
 
@@ -46,6 +45,12 @@ export const addNewAppointment = async (appDetail) => {
     doctorID: appDetail.doctorID,
     day: appDetail.day,
     isBooked: appDetail.isBooked,
+    severity: appDetail.severity
   });
   return res;
 };
+
+export const getAllAppointments = async () =>{
+  const res = await axios.get(`${backend}/appointments/getAppointmentsData`);
+  return res.data;
+}

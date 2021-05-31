@@ -16,25 +16,25 @@ const useStyles = makeStyles({
   },
 });
 
-export default function AppointmentCard() {
+export default function AppointmentCard({thisAppointment}) {
   const classes = useStyles();
 
   return (
     <div className={classes.card}>
       <div style={{ color: "grey", fontSize: "0.8rem", marginBottom: "1rem" }}>
-        AADDVAI3333AD
+        {thisAppointment.appointmentID}
       </div>
       <div style={{ margin: "0.3rem" }}>
-        <span>Patient:</span>
-        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Vaibhav</span>
+        <span>PatientID:</span>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{thisAppointment.patientID}</span>
       </div>
       <div style={{ margin: "0.3rem" }}>
         <span style={{ color: "#6b6b6b" }}>Speciality:</span>
-        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cardiology</span>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{thisAppointment.speciality}</span>
       </div>
       <div style={{ margin: "0.3rem" }}>
         <span style={{ color: "#6b6b6b" }}>Severity:</span>{" "}
-        <span style={{color:'red'}}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3</span>
+        <span style={{color:'red'}}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{thisAppointment.severity}</span>
       </div>
     </div>
   );

@@ -24,6 +24,12 @@ const useStyles = makeStyles({
   back: {
     border: "1px solid #023047",
     margin: "1rem",
+    color:'#023047',
+    '&:hover': {
+      backgroundColor:'#023047',
+      color:'whiteSmoke',
+      border:"1px solid black"
+    }
   },
   right: {
     marginLeft: "2rem",
@@ -51,6 +57,17 @@ const useStyles = makeStyles({
     margin: "2rem",
     height: "8vh",
   },
+  button:{
+    border: "1px solid #023047",
+    padding: "1rem 2rem",
+    color: "#023047",
+    boxShadow: "3px 3px 1px 0.2px grey",
+    '&:hover':{
+      backgroundColor:'#023047',
+      boxShadow:'0 0 0',
+      color:'whiteSmoke'
+    }
+  }
 });
 
 function AddDoctor(props) {
@@ -245,12 +262,7 @@ function AddDoctor(props) {
         <div>
           <Button
             onClick={submitForm}
-            style={{
-              border: "1px solid #023047",
-              padding: "1rem 2rem",
-              color: "#023047",
-              boxShadow: "3px 3px 1px 0.2px grey",
-            }}
+            className={classes.button}
           >
             {" "}
             <Typography variant="button">Submit Doctor Form</Typography>

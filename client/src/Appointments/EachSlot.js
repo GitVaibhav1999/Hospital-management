@@ -1,6 +1,8 @@
 import { Button, IconButton, makeStyles, Typography } from "@material-ui/core";
 import React from "react";
+import { addNewAppointment } from "../API";
 
+import { useData } from "../Context";
 
 const useStyles = makeStyles({
   root: {
@@ -9,14 +11,13 @@ const useStyles = makeStyles({
     justifyContent: "left",
     alignItems: "left",
     width: "90%",
-    // border: "1px solid grey",
+    border: "1px solid grey",
     margin: "2rem 0.5rem",
     padding: "2rem 1rem",
     borderRadius: "10px",
-    boxShadow: "0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08)",
+    // boxShadow: "0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08)",
     backgroundColor: "#fcf4f2",
   },
-
 
   left: {
     display: "flex",
@@ -36,12 +37,24 @@ const useStyles = makeStyles({
   },
 });
 
-function EachSlot({slotData}) {
+function EachSlot({ slotData, hideSlots }) {
   const classes = useStyles();
+
+  const { value_app_detail } = useData();
+  const [appDetail, setAppDetail] = value_app_detail;
+
+  const bookSlot = async () => {
+    var tempAppDetail = { ...appDetail };
+    tempAppDetail.day = slotData.day;
+    tempAppDetail.doctorID = slotData.doctorID;
+    tempAppDetail.isBooked = true;
+
+    const res = await addNewAppointment(tempAppDetail);
+    hideSlots()
+  };
 
   return (
     <div className={classes.root}>
-      
       <div className={classes.left}>
         <div style={{ width: "30%", textAlign: "left" }}>
           <Typography style={{ color: "grey", fontSize: "1.3rem" }}>
@@ -61,7 +74,11 @@ function EachSlot({slotData}) {
         </div>
       </div>
       <div>
-        <Button className={classes.button} variant="outlined">
+        <Button
+          onClick={bookSlot}
+          className={classes.button}
+          variant="outlined"
+        >
           Book Slot
         </Button>
       </div>

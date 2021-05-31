@@ -5,7 +5,7 @@ import { useData } from "../Context";
 import EachSlot from "./EachSlot";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import HourglassEmptyIcon from "@material-ui/icons/HourglassEmpty";
-import { addNewAppointment } from "../API";
+import { addNewAppointment, getAllAppointments } from "../API";
 
 const useStyles = makeStyles({
   root: {
@@ -47,10 +47,19 @@ const useStyles = makeStyles({
 function ShowSlots() {
   const classes = useStyles();
 
-  const { value_app_detail, value_show_slots, value_doctors_data } = useData();
+  const {
+    value_app_detail,
+    value_show_slots,
+    value_doctors_data,
+    value_pending_appointments,
+    value_booked_appointments,
+  } = useData();
   const [appDetail, setAppDetail] = value_app_detail;
   const [showSlots, setShowSlots] = value_show_slots;
   const [doctorsData, setDoctorsData] = value_doctors_data;
+  const [pendingAppointments, setPendingAppointments] =
+    value_pending_appointments;
+  const [bookedAppointments, setBookedAPpointments] = value_booked_appointments;
 
   const [slots, setSlots] = React.useState([]);
 
@@ -63,6 +72,7 @@ function ShowSlots() {
           tempSlots.push({
             doctorName: eachDoctor.firstName,
             speciality: eachDoctor.speciality,
+            doctorID: eachDoctor.doctorID,
             day: eachDay,
           });
         });
@@ -76,10 +86,27 @@ function ShowSlots() {
   };
 
   const addToPending = async () => {
+    appDetail.isBooked = false;
     addNewAppointment(appDetail)
       .then((res) => {
         console.log("add appointment response", res.data);
-        setShowSlots(false)
+        setShowSlots(false);
+        const getAppointments = async () => {
+          const tempPending = [];
+          const tempBooked = [];
+          const resApp = await getAllAppointments();
+
+          resApp.forEach((eachAppointment) => {
+            if (eachAppointment.isBooked == false)
+              tempPending.push({ ...eachAppointment });
+            else tempBooked.push({ ...eachAppointment });
+          });
+          // console.log("All pending ", tempPending);
+          // console.log("All booked", tempBooked);
+          setPendingAppointments(tempPending);
+          setBookedAPpointments(tempBooked);
+        };
+        getAppointments();
       })
       .catch((err) => console.log(err));
   };
@@ -123,7 +150,7 @@ function ShowSlots() {
       </div>
       <div className={classes.right}>
         {slots.map((eachSlot) => (
-          <EachSlot slotData={eachSlot} />
+          <EachSlot hideSlots = {()=>setShowSlots(false)} slotData={eachSlot} />
         ))}
       </div>
     </div>

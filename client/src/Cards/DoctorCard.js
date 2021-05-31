@@ -53,7 +53,7 @@ function DoctorCard({ thisDoctor }) {
       <div className={classes.detail}>
         <div className={classes.top}>
           <span style={{ flexGrow: "1" }}>
-            <Typography variant="h4">{thisDoctor.firstName}</Typography>
+            <Typography variant="h4">Dr. {thisDoctor.firstName}</Typography>
           </span>
           <span className={classes.delete}>
             <IconButton onClick={deleteDoctor}>

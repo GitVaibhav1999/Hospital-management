@@ -21,6 +21,11 @@ const useStyles = makeStyles((theme) => ({
   add: {
     padding: "1rem",
     boxShadow: "3px 3px 1px 0.2px grey",
+    '&:hover':{
+      backgroundColor: '#023047',
+      color:'whiteSmoke',
+      boxShadow:'0px 0px 0px'
+    }
   },
 }));
 
@@ -62,7 +67,6 @@ function DoctorsTab() {
       <div style={{ flexGrow: "1" }}></div>
       <Button
         onClick={() => setAdd(true)}
-        style={{ color: "#023047" }}
         variant="outlined"
         color="#023047"
         className={classes.add}

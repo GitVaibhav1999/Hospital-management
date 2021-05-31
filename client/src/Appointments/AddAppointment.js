@@ -22,17 +22,11 @@ const useStyles = makeStyles(() => ({
     fontSize: "0.5em",
     padding: "1.4rem 1.5rem",
     textAlign: "left",
-    border: "1px solid #e07a5f",
     borderRadius: "2rem",
-    boxShadow: "1px 1px 2px 0.4px #e07a5f",
-    // position: "relative",
-    // top: "50%",
-    // left: "50%",
-    transform: "translate(-2%, -0%)",
+    boxShadow: "0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08)",
+    border:'1px solid grey',
     zIndex: "100",
-    backgroundColor: "#fcf2f0",
-    // transition: "3s ease",
-    boxShadow: "3px 3px 6px 1px #8a795d",
+    backgroundColor: "#ffe4e1",
     top: "300px",
     left: "10%",
   },
@@ -53,6 +47,16 @@ const useStyles = makeStyles(() => ({
     direction: "row",
     alignItems: "center",
   },
+  button:{
+    border: "1px solid grey",
+    boxShadow: "3px 3px 1px 0.1px #8a795d",
+    width: "70%",
+    backgroundColor: "lightPink",
+    '&:hover':{
+      boxShadow:'0 0 0',
+      backgroundColor: "lightPink",
+    }
+  }
 }));
 
 function AddAppointment({ thisPatient, close }) {
@@ -77,7 +81,7 @@ function AddAppointment({ thisPatient, close }) {
       speciality: speciality,
       doctorID: "",
       day: "",
-      isBooked: false
+      isBooked: false,
     });
     setShowSlots(true);
   };
@@ -154,12 +158,7 @@ function AddAppointment({ thisPatient, close }) {
         <div>
           <Button
             onClick={showAvailableSlots}
-            style={{
-              border: "1px solid grey",
-              boxShadow: "3px 3px 1px 0.1px #8a795d",
-              width: "70%",
-              backgroundColor:'lightPink'
-            }}
+            className={classes.button}
           >
             {" "}
             Show Slots{" "}
