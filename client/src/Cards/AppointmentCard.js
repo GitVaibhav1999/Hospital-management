@@ -16,7 +16,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function AppointmentCard({thisAppointment}) {
+export default function AppointmentCard({ thisAppointment }) {
   const classes = useStyles();
 
   return (
@@ -26,7 +26,7 @@ export default function AppointmentCard({thisAppointment}) {
       </div>
       <div style={{ margin: "0.3rem" }}>
         <span>PatientID:</span>
-        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{thisAppointment.patientID}</span>
+        <span style={{color:''}}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{thisAppointment.patientID}</span>
       </div>
       <div style={{ margin: "0.3rem" }}>
         <span style={{ color: "#6b6b6b" }}>Speciality:</span>
@@ -34,7 +34,29 @@ export default function AppointmentCard({thisAppointment}) {
       </div>
       <div style={{ margin: "0.3rem" }}>
         <span style={{ color: "#6b6b6b" }}>Severity:</span>{" "}
-        <span style={{color:'red'}}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{thisAppointment.severity}</span>
+        <span style={{ color: "red" }}>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{thisAppointment.severity}
+        </span>
+      </div>
+      <div>
+        {thisAppointment.doctorID.lenght != 0 ? (
+          <div style={{ margin: "0.3rem" }}>
+            <span style={{ color: "#6b6b6b" }}>DoctorID:</span>{" "}
+            <span style={{ color: "#023047" }}>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{thisAppointment.doctorID}
+            </span>
+          </div>
+        ) : null}
+      </div>
+      <div>
+        {thisAppointment.day.lenght != 0 ? (
+          <div style={{ margin: "0.3rem" }}>
+            <span style={{ color: "#6b6b6b" }}>DoctorID:</span>{" "}
+            <span style={{ color: "#023047" }}>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{thisAppointment.day}
+            </span>
+          </div>
+        ) : null}
       </div>
     </div>
   );
