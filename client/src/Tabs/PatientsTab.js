@@ -1,9 +1,7 @@
 import { Typography, makeStyles, Button, Grid } from "@material-ui/core";
 import React from "react";
 import AddPatient from "../AddForm/AddPatient";
-import { getPatientsData } from "../API";
 import ShowSlots from "../Appointments/ShowSlots";
-import DoctorCard from "../Cards/DoctorCard";
 import PatientCard from "../Cards/PatientCard";
 import { useData } from "../Context";
 import SearchPatients from "../Search/SearchPatient";
@@ -17,6 +15,13 @@ const useStyles = makeStyles((theme) => ({
   },
   list: {
     overflow: "auto",
+    width: "100%",
+    marginBottom: "1rem",
+    border: "1px solid 8a795d",
+    height: "100%",
+    boxShadow: "inset -8px 0 20px grey",
+
+    // backgroundColor:'red  '
   },
   add: {
     padding: "1rem",
@@ -41,15 +46,6 @@ function PatientsTab() {
 
   const [add, setAdd] = React.useState(false);
 
-  React.useEffect(() => {
-    const getData = async () => {
-      const tempPatientsData = await getPatientsData();
-      console.log(tempPatientsData);
-      setPatientsData(tempPatientsData);
-    };
-    getData();
-  }, []);
-
   if (showSlots == true) {
     return <ShowSlots />;
   }
@@ -63,13 +59,16 @@ function PatientsTab() {
       <div className={classes.search}>
         <SearchPatients />
       </div>
-      <Grid className={classes.list} container>
-        {patientsData.map((thisPatient) => (
-          <Grid item>
-            <PatientCard thisPatient={thisPatient} />
-          </Grid>
-        ))}
-      </Grid>
+      <div className={classes.list}>
+        <Grid container>
+          {patientsData.map((thisPatient) => (
+            <Grid item>
+              <PatientCard thisPatient={thisPatient} />
+            </Grid>
+          ))}
+        </Grid>
+      </div>
+
       <div style={{ flexGrow: "1" }}></div>
       <Button
         onClick={() => setAdd(true)}

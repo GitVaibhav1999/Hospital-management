@@ -8,10 +8,11 @@ const useStyles = makeStyles({
     flexDirection: "column",
     backgroundColor: "#f2eecb",
     padding: "1rem 1rem",
-    margin: "0.5rem 1rem 2rem",
+    marginBottom: "0.5rem",
     width: "16vw",
     textAlign: "left",
     justifyContent: "left",
+    border:"1px solid grey",
     boxShadow: "0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08)",
   },
 });
@@ -39,7 +40,7 @@ export default function AppointmentCard({ thisAppointment }) {
         </span>
       </div>
       <div>
-        {thisAppointment.doctorID.lenght != 0 ? (
+        {thisAppointment.doctorID.length != 0 ? (
           <div style={{ margin: "0.3rem" }}>
             <span style={{ color: "#6b6b6b" }}>DoctorID:</span>{" "}
             <span style={{ color: "#023047" }}>
@@ -49,9 +50,9 @@ export default function AppointmentCard({ thisAppointment }) {
         ) : null}
       </div>
       <div>
-        {thisAppointment.day.lenght != 0 ? (
+        {thisAppointment.day.length != 0 ? (
           <div style={{ margin: "0.3rem" }}>
-            <span style={{ color: "#6b6b6b" }}>DoctorID:</span>{" "}
+            <span style={{ color: "#6b6b6b" }}>Day:</span>{" "}
             <span style={{ color: "#023047" }}>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{thisAppointment.day}
             </span>

@@ -1,8 +1,6 @@
 import { Typography, makeStyles, Button, Grid } from "@material-ui/core";
-import { DocumentProvider } from "mongoose";
 import React from "react";
 import AddDoctor from "../AddForm/AddDoctor";
-import { getDoctorsData } from "../API";
 import DoctorCard from "../Cards/DoctorCard";
 import { useData } from "../Context";
 import SearchDoctor from "../Search/SearchDoctor";
@@ -16,16 +14,22 @@ const useStyles = makeStyles((theme) => ({
   },
   list: {
     overflow: "auto",
+    width: "100%",
+    marginBottom: "1rem",
+    border: "1px solid 8a795d",
+    height: "100%",
+    boxShadow: "inset -1px 0 20px grey  ",
+    
     // backgroundColor:'red  '
   },
   add: {
     padding: "1rem",
     boxShadow: "3px 3px 1px 0.2px grey",
-    '&:hover':{
-      backgroundColor: '#023047',
-      color:'whiteSmoke',
-      boxShadow:'0px 0px 0px'
-    }
+    "&:hover": {
+      backgroundColor: "#023047",
+      color: "whiteSmoke",
+      boxShadow: "0px 0px 0px",
+    },
   },
 }));
 
@@ -34,16 +38,6 @@ function DoctorsTab() {
 
   const { value_doctors_data } = useData();
   const [doctorsData, setDoctorsData] = value_doctors_data;
-
-  React.useEffect(() => console.log(doctorsData), [doctorsData]);
-
-  React.useEffect(() => {
-    const getData = async () => {
-      const tempDoctorsData = await getDoctorsData();
-      setDoctorsData(tempDoctorsData);
-    };
-    getData();
-  }, []);
 
   const [add, setAdd] = React.useState(false);
   React.useEffect(() => console.log(add), [add]);
@@ -56,14 +50,26 @@ function DoctorsTab() {
 
   return (
     <div className={classes.root}>
-      <div className={classes.search}> <SearchDoctor /></div>
-      <Grid className={classes.list} container>
-        {doctorsData.map((each_doctor) => (
-          <Grid item>
-            <DoctorCard thisDoctor={each_doctor} />
-          </Grid>
-        ))}
-      </Grid>
+      <div className={classes.search}>
+        {" "}
+        <SearchDoctor />
+      </div>
+      <div className={classes.list}>
+        <Grid
+          
+          container
+          direction="row"
+          justify="flex-start"
+          alignItems="flex-start"
+        >
+          {doctorsData.map((each_doctor) => (
+            <Grid item>
+              <DoctorCard thisDoctor={each_doctor} />
+            </Grid>
+          ))}
+        </Grid>
+      </div>
+
       <div style={{ flexGrow: "1" }}></div>
       <Button
         onClick={() => setAdd(true)}

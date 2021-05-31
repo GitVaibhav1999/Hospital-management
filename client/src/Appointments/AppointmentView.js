@@ -12,7 +12,8 @@ const useStyles = makeStyles({
     justifyContent: "center",
     alignItems: "center",
     height: "100%",
-    width: "20vw",
+    width: "19vw",
+    borderLeft: "1px solid black",
     // marginTop:'1rem',
     // marginB/ottom:'1rem',
     background: "whiteSmoke",
@@ -31,6 +32,7 @@ const useStyles = makeStyles({
     color: "grey",
     fontSize: "1.6rem",
     width: "100%",
+    marginBottom: "0.5rem",
     margin: "1rem",
   },
   switch: {
@@ -40,6 +42,7 @@ const useStyles = makeStyles({
     width: "20vw",
     color: "black",
     width: "19vw",
+    marginBottom: "1rem",
   },
 });
 
@@ -79,31 +82,26 @@ function AppointmentView() {
   return (
     <div className={classes.root}>
       <div className={classes.switch}>
-        <span>Booked</span>
+        <span>BOOKED</span>
         <Switch
           checked={showPending}
           onChange={handleSwitch}
           name="checkedA"
           inputProps={{ "aria-label": "secondary checkbox" }}
         />
-        <span>Pending</span>
+        <span>PENDING</span>
       </div>
-      <div className={classes.top}>
-        {showPending == true ? (
-          <span>Pending Appointments -</span>
-        ) : (
-          <span>Booked Appointments -</span>
-        )}{" "}
-      </div>
-      <div className={classes.middle}>
-        {showPending == false
-          ? bookedAppointments.map((eachPending) => {
-              return <AppointmentCard thisAppointment={eachPending} />;
-            })
-          : pendingAppointments.map((eachPending) => {
-              return <AppointmentCard thisAppointment={eachPending} />;
-            })}
-      </div>
+
+      {/* <div className={classes.middle}> */}
+      {showPending == false
+        ? bookedAppointments.map((eachPending) => {
+            return <AppointmentCard thisAppointment={eachPending} />;
+          })
+        : pendingAppointments.map((eachPending) => {
+            return <AppointmentCard thisAppointment={eachPending} />;
+          })}
+      {/* </div> */}
+      <div style={{ flexGrow: "1" }}></div>
     </div>
   );
 }

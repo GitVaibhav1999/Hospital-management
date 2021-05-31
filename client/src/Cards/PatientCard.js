@@ -40,6 +40,18 @@ const useStyles = makeStyles(() => ({
   png: {
     fill: "red",
   },
+  button:{
+    border: "1px solid grey",
+    borderRadius: "20px",
+    padding: "2% 4%",
+    backgroundColor:'whiteSmoke',
+    '&:hover':{
+      border: "1px solid red",
+      borderRadius: "20px",
+      padding: "2% 4%",
+      backgroundColor:'	#FFC0CB',
+    }
+  }
 }));
 
 function PatientCard({ thisPatient }) {
@@ -69,13 +81,9 @@ function PatientCard({ thisPatient }) {
         <div style={{ flexGrow: "1", justifyContent: "center" }}></div>
         <IconButton
           onClick={() => setAppointment(true)}
-          style={{
-            border: "1px solid lightgrey",
-            borderRadius: "20px",
-            padding: "2% 4%",
-          }}
+          className={classes.button}
         >
-          <AddCircleOutlineIcon />
+          <AddCircleOutlineIcon/>
           <Typography style={{ marginLeft: "1rem" }} variant="button">
             Appointment
           </Typography>
