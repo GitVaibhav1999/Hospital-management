@@ -20,13 +20,15 @@ const useStyles = makeStyles({
     overflow: "hidden",
     boxShadow:
       "0 2px 20px 10px rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08)",
-
-    //
   },
   middle: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
     overflowY: "auto",
     flexGrow: "1",
-    // border:"1px solid grey"
+    width: "100%",
+    height: "100%",
   },
   top: {
     color: "grey",
@@ -42,6 +44,7 @@ const useStyles = makeStyles({
     width: "20vw",
     color: "black",
     width: "19vw",
+    flexGrow: "1",
     marginBottom: "1rem",
   },
 });
@@ -67,8 +70,7 @@ function AppointmentView() {
           tempPending.push({ ...eachAppointment });
         else tempBooked.push({ ...eachAppointment });
       });
-      // console.log("All pending ", tempPending);
-      // console.log("All booked", tempBooked);
+
       setPendingAppointments(tempPending);
       setBookedAPpointments(tempBooked);
     };
@@ -92,16 +94,15 @@ function AppointmentView() {
         <span>PENDING</span>
       </div>
 
-      {/* <div className={classes.middle}> */}
-      {showPending == false
-        ? bookedAppointments.map((eachPending) => {
-            return <AppointmentCard thisAppointment={eachPending} />;
-          })
-        : pendingAppointments.map((eachPending) => {
-            return <AppointmentCard thisAppointment={eachPending} />;
-          })}
-      {/* </div> */}
-      <div style={{ flexGrow: "1" }}></div>
+      <div className={classes.middle}>
+        {showPending == false
+          ? bookedAppointments.map((eachPending) => {
+              return <AppointmentCard thisAppointment={eachPending} />;
+            })
+          : pendingAppointments.map((eachPending) => {
+              return <AppointmentCard thisAppointment={eachPending} />;
+            })}
+      </div>
     </div>
   );
 }

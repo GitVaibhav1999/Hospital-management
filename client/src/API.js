@@ -45,12 +45,20 @@ export const addNewAppointment = async (appDetail) => {
     doctorID: appDetail.doctorID,
     day: appDetail.day,
     isBooked: appDetail.isBooked,
-    severity: appDetail.severity
+    severity: appDetail.severity,
   });
   return res;
 };
 
-export const getAllAppointments = async () =>{
+export const getAllAppointments = async () => {
   const res = await axios.get(`${backend}/appointments/getAppointmentsData`);
   return res.data;
-}
+};
+
+export const deleteAppointment = async (appID) => {
+  const res = await axios.delete(
+    `${backend}/appointments/deleteAppointmentByID`,
+    { data: { appointmentID: appID } }
+  );
+  return res;
+};
