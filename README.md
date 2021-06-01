@@ -1,9 +1,10 @@
 # Hospital-management
 
 **Starting the Project**
-
-1. 'npm start' in the parent directory (sets up local server at localhost **9000**)  (logs "DB connected" when  connection is established with database)
-2. 'npm start' in client directory (renders front end on localhost **3000**)
+1. clone the project
+2. 'npm install' to add all dependencies
+3. 'npm start' **in the parent directory** (sets up local server at localhost **9000**)  (logs "DB connected" when  connection is established with database)
+4. 'npm start' **in client directory** (renders front end on localhost **3000**)
 
 **Technologies Used**
 
