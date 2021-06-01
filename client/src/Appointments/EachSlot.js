@@ -1,6 +1,6 @@
 import { Button, IconButton, makeStyles, Typography } from "@material-ui/core";
 import React from "react";
-import { addNewAppointment } from "../API";
+import { addNewAppointment, getAllAppointments } from "../API"
 
 import { useData } from "../Context";
 
@@ -40,8 +40,9 @@ const useStyles = makeStyles({
 function EachSlot({ slotData, hideSlots }) {
   const classes = useStyles();
 
-  const { value_app_detail } = useData();
+  const { value_app_detail, value_booked_appointments } = useData();
   const [appDetail, setAppDetail] = value_app_detail;
+  const [bookedAppointments, setBookedAPpointments] = value_booked_appointments
 
   const bookSlot = async () => {
     var tempAppDetail = { ...appDetail };
@@ -50,6 +51,21 @@ function EachSlot({ slotData, hideSlots }) {
     tempAppDetail.isBooked = true;
 
     const res = await addNewAppointment(tempAppDetail);
+
+    const getAppointments = async () => {
+      const tempBooked = [];
+      const resApp = await getAllAppointments();
+
+      resApp.forEach((eachAppointment) => {
+        if (eachAppointment.isBooked != false)
+          tempBooked.push({ ...eachAppointment });
+
+      });
+
+      setBookedAPpointments(tempBooked);
+    };
+    getAppointments();
+
     hideSlots()
   };
 

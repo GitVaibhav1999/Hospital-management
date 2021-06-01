@@ -85,6 +85,10 @@ function ShowSlots() {
     setShowSlots(false);
   };
 
+  React.useEffect(()=>{
+    console.log('booked appointments',bookedAppointments)
+  },[bookedAppointments])
+
   const addToPending = async () => {
     appDetail.isBooked = false;
     addNewAppointment(appDetail)
@@ -101,8 +105,7 @@ function ShowSlots() {
               tempPending.push({ ...eachAppointment });
             else tempBooked.push({ ...eachAppointment });
           });
-          // console.log("All pending ", tempPending);
-          // console.log("All booked", tempBooked);
+
           setPendingAppointments(tempPending);
           setBookedAPpointments(tempBooked);
         };

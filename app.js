@@ -21,7 +21,7 @@ app.use("/appointments", appointmentsRoute);
 
 
 app.get("/", (req, res) => {
-  res.send("we are at home");
+  res.send("Server Running");
 });
 
 //   connect to  db

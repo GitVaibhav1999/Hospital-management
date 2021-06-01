@@ -19,7 +19,7 @@ const useStyles = makeStyles({
     display: "flex",
     width: "100%",
     // border: "1px solid grey",
-    height: "10vh",
+    height: "8vh",
     alignItems: "center",
     border: "1px solid lightgrey",
     boxShadow: "0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08)",
@@ -32,7 +32,7 @@ const useStyles = makeStyles({
     fontSize: "2rem",
   },
   search: {
-    marginRight: "1rem",
+    marginRight: "0.5rem",
     width: "200%",
     borderRadius: "40px",
     border: "1px solid #d3d3d3",
@@ -122,7 +122,7 @@ function SearchDoctor() {
           </InputLabel>
           <Select
             disableUnderline={true}
-            style={{ margin: "1rem", paddingLeft: "1rem" }}
+            style={{ margin: "1rem", paddingLeft: "1rem",height:'3vh' }}
             value={speciality}
             onChange={handleSpeciality}
             label="Speciality"
